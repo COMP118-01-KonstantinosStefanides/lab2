@@ -41,6 +41,8 @@ int main() {
   int price[SIZE] = {12, 4, 8, 1, 17, 2, 4, 2, 9, 1};
   // Declare array quantity and total
   int quantity[SIZE], total[SIZE];
+  //Initialize average of all odds variable
+  int avgOdds = 0;
 
   // Interactive menu
   do {
@@ -70,6 +72,12 @@ int main() {
         else
           cout << "\nNegative number found!";
         break;
+        case 6:
+        if (avgOddArray(total, SIZE, avgOdds))
+          cout << "\nOdd numbers found. The average of all odd numbers is: " << avgOdds << endl;
+        else
+          cout << "\nNo odd numbers were found.";
+        break;
       // Exit
       case 0:
         // No code needed
@@ -98,15 +106,16 @@ int printMenu(){
     cout << "\n3) Print total";
     cout << "\n4) Print the sum of all Odds";
     cout << "\n5) Positive number checker";
+    cout << "\n6) Average of all odds checker";
     cout << "\n0) Exit";
 
     cout << "\nEnter the choice: ";
     cin >> choice;
 
-    if (choice < 0 || choice > 5){
+    if (choice < 0 || choice > 6){
       cout << "\nWrong choice, try again.";
     }
-  } while (choice < 0 || choice > 5);
+  } while (choice < 0 || choice > 6);
   return choice;
 }
 
@@ -198,11 +207,34 @@ bool isAllPositive(const int arr[], const int size){
   return true;
 }
 
-// Finds the average of all the odd numbers in the array and stores this in the last argument
-// returns false if there are no odd numbers in the array, true otherwise.
+/**
+ * <code>avgOddArray</code> Sums up all the odd numbers in the array and finds the average.
+ * Additionally it returns false if it doesnt find any odds or true if it does find odds.
+ * <BR>
+ * @param arr The array containing the values.
+ * @param size The size of the array.
+ * @param avgOdd the variable that stores the average of all odd numbers in total
+ * @return returns true if odd numbers are in the array, otherwise false.
+ */
 bool avgOddArray(const int arr[], const int size, int& avgOdd){
-  //@TODO: You will need to complete this. Including making the appropriate comment header
-  return false;
+  assert(size <= 10);
+
+  int sum = 0;
+  int temp = 0;
+  
+  for (int i = 0; i < size; i++){
+    if (arr[i] % 2 != 0){
+      sum += arr[i];
+      temp++;
+    }
+  }
+  if (sum == 0)
+    return false;
+  else {
+    assert(sum != 0);
+    avgOdd = sum / temp;
+    return true;    
+  }
 }
 
 // You revert the numbers (in place) of the array. I.e. if your array have the values [1, 3, 4, 7, 11] then
