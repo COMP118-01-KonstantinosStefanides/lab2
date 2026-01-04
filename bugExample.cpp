@@ -21,7 +21,7 @@ using namespace std;
 // Function prototypes
 int printMenu();
 void fillInArray(int[], const int);
-void multArrays(const int[], const int[], int[], const int);
+void multArrays(const int[], const int[], int[], const int, const int);
 void displayArray(const int[], const int);
 int sumOddArray(const int[], const int);
 bool isAllPositive(const int[], const int);
@@ -35,10 +35,11 @@ void revertNumbers(int arr[], const int size);
  */
 int main() {
   int choice;
+  const int VAT = 21;
   const int SIZE = 10;
 
   // Initialize array price
-  int price[SIZE] = {12, 4, 8, 1, 17, 2, 4, 2, 9, 1};
+  int price[SIZE] = {10, 20, 25, 43, 12, 15, 31, 41, 50, 11};
   // Declare array quantity and total
   int quantity[SIZE] = {0}, total[SIZE] = {0};
   //Initialize average of all odds variable
@@ -55,7 +56,7 @@ int main() {
         break;
       // Calculate total
       case 2:
-        multArrays(quantity, price, total, SIZE);
+        multArrays(quantity, price, total, SIZE, VAT);
         break;
       // Print total
       case 3:
@@ -150,11 +151,12 @@ void fillInArray(int arr[], const int size){
  * @param arrTotal The array that gains the multiplied elements.
  * @param size The size of the arrays.
  */
-void multArrays(const int arrQuantity[], const int arrPrice[], int arrTotal[], const int size){
+void multArrays(const int arrQuantity[], const int arrPrice[], int arrTotal[], const int size, const int VAT){
   assert (size <= 10);
 
   for (int i = 0; i < size; i++){
-    arrTotal[i] = arrQuantity[i] * arrPrice[i];
+    int total = arrQuantity[i] * arrPrice[i];
+    arrTotal[i] = total * (1.0 + (VAT / 100.0));
   }
 }
 
