@@ -1,5 +1,5 @@
 /** \file bugExample.cpp
- *  \brief     A little with logical bugs in it
+ *  \brief     A program with a few logical bugs in it
  *  \details   This program is littered with logical bugs. Your task is the
  *              following:
  *                1) Compile and run the program.
@@ -31,7 +31,7 @@ void revertNumbers(int arr[], const int size);
 /**
  * <code>main</code> is the main function of this program.
  * <BR>
- * @return Returns 0 if success, any other value otherwise.
+ * @return Returns 0 if the program ends safely.
  */
 int main() {
   int choice;
@@ -73,10 +73,9 @@ int main() {
 }
 
 /**
- * <code>printMenu</code> shows a menu and accepts the choice
- * from the user which is returned.
+ * <code>printMenu</code> prints a menu and returns the choice of the user.
  * <BR>
- * @return Returns the menu choice
+ * @return Returns the user's choice (int)
  */
 int printMenu(){
   int choice;
@@ -99,8 +98,7 @@ int printMenu(){
 }
 
 /**
- * <code>fillInArray</code> is a function that will
- * fill in the elements of an array.
+ * <code>fillInArray</code> is a function that fills in the elements of an array.
  * <BR>
  * @param arr The array to be filled in.
  * @param size The size of the array.
@@ -116,11 +114,11 @@ void fillInArray(int arr[], const int size){
 
 /**
  * <code>multArrays</code> multiplies the value of elements of the source array
- * to the corresponding value at the destination array. NOTE: precondition
+ * to the corresponding value of the destination array. NOTE: precondition
  * is that the arrays have the same size.
  * <BR>
- * @param arrSource The array containing the destination elements.
- * @param arrDest The array containing the source elements.
+ * @param arrPrice The array containing the source elements.
+ * @param arrTotal The array containing the destination elements.
  * @param size The size of the arrays.
  */
 void multArrays(const int arrQuantity[], const int arrPrice[], int arrTotal[], const int size){
@@ -132,11 +130,11 @@ void multArrays(const int arrQuantity[], const int arrPrice[], int arrTotal[], c
 }
 
 /**
- * <code>displayArray</code> prints the value of each of the elements of the
+ * <code>displayArray</code> prints the value of each element in the
  * array. In addition the function sums up the value of all the elements and
  * print the total.
  * <BR>
- * @param ar The array containing the values
+ * @param arr The array containing the values
  * @param size The size of the array.
  */
 void displayArray(const int arr[], int size){
