@@ -49,7 +49,7 @@ int main() {
     switch (choice){
       // Enter quantity
       case 1:
-        fillInArray(quantity, 11);
+        fillInArray(quantity, SIZE);
         break;
       // Calculate total
       case 2:
@@ -90,10 +90,10 @@ int printMenu(){
     cout << "\nEnter the choice: ";
     cin >> choice;
 
-    if (choice < 0 || choice > 4){
+    if (choice < 0 || choice > 3){
       cout << "\nWrong choice, try again.";
     }
-  } while (choice < 0 || choice > 5);
+  } while (choice < 0 || choice > 3);
   return choice;
 }
 
@@ -104,10 +104,10 @@ int printMenu(){
  * @param size The size of the array.
  */
 void fillInArray(int arr[], const int size){
-  assert (size > 1);
+  assert(size <= 10);
 
-  for (int i = 0; i < size; ++i){
-    cout << "\nEnter an element for the array at " << i << ": ";
+  for (int i = 0; i < size; i++){
+    cout << "\nEnter an element for the array at " << i+1 << ": ";
     cin >> arr[i];
   }
 }
