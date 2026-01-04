@@ -72,11 +72,16 @@ int main() {
         else
           cout << "\nNegative number found!";
         break;
+        // Checks for odd numbers and print the average of them if any.
         case 6:
         if (avgOddArray(total, SIZE, avgOdds))
           cout << "\nOdd numbers found. The average of all odd numbers is: " << avgOdds << endl;
         else
           cout << "\nNo odd numbers were found.";
+        break;
+        //reverses the total array
+        case 7:
+        revertNumbers(total, SIZE);
         break;
       // Exit
       case 0:
@@ -87,7 +92,7 @@ int main() {
     }
   } while (choice != 0);
 
-  cout << "\nHave a nice day:)" << endl;
+  cout << "\nHave a nice day." << endl;
   return 0;
 }
 
@@ -107,15 +112,16 @@ int printMenu(){
     cout << "\n4) Print the sum of all Odds";
     cout << "\n5) Positive number checker";
     cout << "\n6) Average of all odds checker";
+    cout << "\n7) Reverse Numbers";
     cout << "\n0) Exit";
 
     cout << "\nEnter the choice: ";
     cin >> choice;
 
-    if (choice < 0 || choice > 6){
+    if (choice < 0 || choice > 7){
       cout << "\nWrong choice, try again.";
     }
-  } while (choice < 0 || choice > 6);
+  } while (choice < 0 || choice > 7);
   return choice;
 }
 
@@ -173,7 +179,7 @@ void displayArray(const int arr[], int size){
 }
 
 /**
- * <code>sumOddArray</code> Prints the total of all odd numbers in the total array
+ * <code>sumOddArray</code> Prints the total of all odd numbers in the array
  * <BR>
  * @param arr The array containing the values.
  * @param size The size of the array.
@@ -191,7 +197,7 @@ int sumOddArray(const int arr[], const int size){
 }
 
 /**
- * <code>isAllPositive</code> Returns true if all elements in the total array are positive numbers
+ * <code>isAllPositive</code> Returns true if all elements in the array are positive numbers
  * <BR>
  * @param arr The array containing the values.
  * @param size The size of the array.
@@ -237,8 +243,23 @@ bool avgOddArray(const int arr[], const int size, int& avgOdd){
   }
 }
 
-// You revert the numbers (in place) of the array. I.e. if your array have the values [1, 3, 4, 7, 11] then
-// after calling this function the values in the array should be [11, 7, 4, 3, 1]
+/**
+ * <code>revertNumbers</code> Reverses the given array and prints it
+ * <BR>
+ * @param arr The array to be reversed.
+ * @param size The size of the array.
+ */
 void revertNumbers(int arr[], const int size) {
-  //@TODO: You will need to complete this. Including making the appropriate comment header
+  assert(size <= 10);
+  int temp = 0;
+
+  for (int i = 0; i < size / 2; i++){
+    temp = arr[i];
+    arr[i] = arr[size - 1 - i];
+    arr[size - 1 - i] = temp;
+  }
+  cout << "\nThe reversed array: ";
+  for (int i = 0; i < size; i++){
+    cout << arr[i] << " ";
+  }
 }
