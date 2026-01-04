@@ -63,6 +63,13 @@ int main() {
       case 4:
         cout << "\nThe sum of all odd numbers in total: " << sumOddArray(total, SIZE) << endl;
         break;
+      // Checks wether all numbers in total are positive or not
+      case 5:
+        if (isAllPositive(total, SIZE))
+          cout << "\nAll numbers are positive!";
+        else
+          cout << "\nNegative number found!";
+        break;
       // Exit
       case 0:
         // No code needed
@@ -90,15 +97,16 @@ int printMenu(){
     cout << "\n2) Calculate total";
     cout << "\n3) Print total";
     cout << "\n4) Print the sum of all Odds";
+    cout << "\n5) Positive number checker";
     cout << "\n0) Exit";
 
     cout << "\nEnter the choice: ";
     cin >> choice;
 
-    if (choice < 0 || choice > 4){
+    if (choice < 0 || choice > 5){
       cout << "\nWrong choice, try again.";
     }
-  } while (choice < 0 || choice > 4);
+  } while (choice < 0 || choice > 5);
   return choice;
 }
 
@@ -173,10 +181,21 @@ int sumOddArray(const int arr[], const int size){
   return sum;
 }
 
-// If all the values in the array are positive return true
+/**
+ * <code>isAllPositive</code> Returns true if all elements in the total array are positive numbers
+ * <BR>
+ * @param arr The array containing the values.
+ * @param size The size of the array.
+ * @return returns true if all elements in the array are positive, otherwise false.
+ */
 bool isAllPositive(const int arr[], const int size){
-  //@TODO: You will need to complete this. Including making the appropriate comment header
-  return 0;
+  assert(size <= 10);
+
+  for (int i = 0; i < size; i++){
+    if (arr[i] < 0)
+      return false;
+  }
+  return true;
 }
 
 // Finds the average of all the odd numbers in the array and stores this in the last argument
