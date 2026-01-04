@@ -40,7 +40,7 @@ int main() {
   // Initialize array price
   int price[SIZE] = {12, 4, 8, 1, 17, 2, 4, 2, 9, 1};
   // Declare array quantity and total
-  int quantity[SIZE], total[SIZE];
+  int quantity[SIZE] = {0}, total[SIZE] = {0};
   //Initialize average of all odds variable
   int avgOdds = 0;
 
@@ -234,10 +234,10 @@ bool avgOddArray(const int arr[], const int size, int& avgOdd){
       temp++;
     }
   }
-  if (sum == 0)
+  if (temp == 0)
     return false;
   else {
-    assert(sum != 0);
+    assert(temp != 0);
     avgOdd = sum / temp;
     return true;    
   }
