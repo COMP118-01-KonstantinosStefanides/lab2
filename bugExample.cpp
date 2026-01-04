@@ -40,7 +40,7 @@ int main() {
   // Initialize array price
   int price[SIZE] = {12, 4, 8, 1, 17, 2, 4, 2, 9, 1};
   // Declare array quantity and total
-  int quantity[SIZE], total[9];
+  int quantity[SIZE], total[SIZE];
 
   // Interactive menu
   do {
@@ -53,7 +53,7 @@ int main() {
         break;
       // Calculate total
       case 2:
-        multArrays(quantity, total, price, SIZE);
+        multArrays(quantity, price, total, SIZE);
         break;
       // Print total
       case 3:
@@ -114,18 +114,19 @@ void fillInArray(int arr[], const int size){
 
 /**
  * <code>multArrays</code> multiplies the value of elements of the source array
- * to the corresponding value of the destination array. NOTE: precondition
+ * to a corresponding value of the price array in a new total array. NOTE: precondition
  * is that the arrays have the same size.
  * <BR>
- * @param arrPrice The array containing the source elements.
- * @param arrTotal The array containing the destination elements.
+ * @param arrQuantity The array containing the source elements.
+ * @param arrPrice The array containing the destination elements.
+ * @param arrTotal The array that gains the multiplied elements.
  * @param size The size of the arrays.
  */
 void multArrays(const int arrQuantity[], const int arrPrice[], int arrTotal[], const int size){
-  assert (size > 0);
+  assert (size <= 10);
 
-  for (int i = 0; i <= size; ++i){
-    arrTotal[i] = arrQuantity[i] + arrPrice[i+1];
+  for (int i = 0; i < size; i++){
+    arrTotal[i] = arrQuantity[i] * arrPrice[i];
   }
 }
 
