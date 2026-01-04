@@ -16,17 +16,19 @@
 
 #include <iostream>
 #include <cassert>
+#include<cstdlib>
+#include<ctime>
 using namespace std;
 
 // Function prototypes
 int printMenu();
 void fillInArray(int[], const int);
-void multArrays(const int[], const int[], int[], const int, const int);
-void displayArray(const int[], const int);
-int sumOddArray(const int[], const int);
-bool isAllPositive(const int[], const int);
-bool avgOddArray(const int[], const int, int&);
-void revertNumbers(int arr[], const int size);
+void multArrays(const int[], const int[], int[][2], const int, const int);
+void displayArray(const int[][2], const int);
+int sumOddArray(const int[][2], const int);
+bool isAllPositive(const int[][2], const int);
+bool avgOddArray(const int[][2], const int, int&);
+void revertNumbers(int arr[][2], const int size);
 
 /**
  * <code>main</code> is the main function of this program.
@@ -38,10 +40,13 @@ int main() {
   const int VAT = 21;
   const int SIZE = 10;
 
+  srand(time(NULL));
+  int randomValue = rand() % 100;
+
   // Initialize array price
   int price[SIZE] = {10, 20, 25, 43, 12, 15, 31, 41, 50, 11};
   // Declare array quantity and total
-  int quantity[SIZE] = {0}, total[SIZE] = {0};
+  int quantity[SIZE] = {0}, total[SIZE][2] = {0};
   //Initialize average of all odds variable
   int avgOdds = 0;
 
@@ -151,12 +156,13 @@ void fillInArray(int arr[], const int size){
  * @param arrTotal The array that gains the multiplied elements.
  * @param size The size of the arrays.
  */
-void multArrays(const int arrQuantity[], const int arrPrice[], int arrTotal[], const int size, const int VAT){
+void multArrays(const int arrQuantity[], const int arrPrice[], int arrTotal[][2], const int size, const int VAT){
   assert (size <= 10);
 
   for (int i = 0; i < size; i++){
     int total = arrQuantity[i] * arrPrice[i];
-    arrTotal[i] = total * (1.0 + (VAT / 100.0));
+    arrTotal[i][0] = total;
+    arrTotal[i][1] = total * (1.0 + (VAT / 100.0));
   }
 }
 
@@ -168,13 +174,13 @@ void multArrays(const int arrQuantity[], const int arrPrice[], int arrTotal[], c
  * @param arr The array containing the values.
  * @param size The size of the array.
  */
-void displayArray(const int arr[], int size){
+void displayArray(const int arr[][2], int size){
   assert(size <= 10);
   int sum = 0;
 
   for (int i = 0; i < size; i++){
-    cout << "\nValue at " << i+1 << ": " << arr[i];
-    sum += arr[i];
+    cout << "\nValue at " << i+1 << ": " << arr[i][0];
+    sum += arr[i][0];
   }
 
   cout << "\nThe total is: " << sum;
@@ -187,13 +193,13 @@ void displayArray(const int arr[], int size){
  * @param size The size of the array.
  * @return returns the sum of all the odd numbers in total
  */
-int sumOddArray(const int arr[], const int size){
+int sumOddArray(const int arr[][2], const int size){
   assert(size <= 10);
   int sum = 0;
 
   for (int i = 0; i < size; i++){
-    if (arr[i] % 2 != 0)
-      sum += arr[i];
+    if (arr[i][0] % 2 != 0)
+      sum += arr[i][0];
   }
   return sum;
 }
@@ -205,11 +211,11 @@ int sumOddArray(const int arr[], const int size){
  * @param size The size of the array.
  * @return returns true if all elements in the array are positive, otherwise false.
  */
-bool isAllPositive(const int arr[], const int size){
+bool isAllPositive(const int arr[][2], const int size){
   assert(size <= 10);
 
   for (int i = 0; i < size; i++){
-    if (arr[i] < 0)
+    if (arr[i][0] < 0)
       return false;
   }
   return true;
@@ -224,15 +230,15 @@ bool isAllPositive(const int arr[], const int size){
  * @param avgOdd the variable that stores the average of all odd numbers in total
  * @return returns true if odd numbers are in the array, otherwise false.
  */
-bool avgOddArray(const int arr[], const int size, int& avgOdd){
+bool avgOddArray(const int arr[][2], const int size, int& avgOdd){
   assert(size <= 10);
 
   int sum = 0;
   int temp = 0;
   
   for (int i = 0; i < size; i++){
-    if (arr[i] % 2 != 0){
-      sum += arr[i];
+    if (arr[i][0] % 2 != 0){
+      sum += arr[i][0];
       temp++;
     }
   }
@@ -251,17 +257,17 @@ bool avgOddArray(const int arr[], const int size, int& avgOdd){
  * @param arr The array to be reversed.
  * @param size The size of the array.
  */
-void revertNumbers(int arr[], const int size) {
+void revertNumbers(int arr[][2], const int size) {
   assert(size <= 10);
   int temp = 0;
 
   for (int i = 0; i < size / 2; i++){
-    temp = arr[i];
-    arr[i] = arr[size - 1 - i];
-    arr[size - 1 - i] = temp;
+    temp = arr[i][0];
+    arr[i][0] = arr[size - 1 - i][0];
+    arr[size - 1 - i][0] = temp;
   }
   cout << "\nThe reversed array: ";
   for (int i = 0; i < size; i++){
-    cout << arr[i] << " ";
+    cout << arr[i][0] << " ";
   }
 }
