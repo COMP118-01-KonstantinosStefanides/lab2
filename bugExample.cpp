@@ -59,6 +59,10 @@ int main() {
       case 3:
         displayArray(total, SIZE);
         break;
+      // Print the sum of all odd numbers in total
+      case 4:
+        cout << "\nThe sum of all odd numbers in total: " << sumOddArray(total, SIZE) << endl;
+        break;
       // Exit
       case 0:
         // No code needed
@@ -85,15 +89,16 @@ int printMenu(){
     cout << "\n1) Enter quantity";
     cout << "\n2) Calculate total";
     cout << "\n3) Print total";
+    cout << "\n4) Print the sum of all Odds";
     cout << "\n0) Exit";
 
     cout << "\nEnter the choice: ";
     cin >> choice;
 
-    if (choice < 0 || choice > 3){
+    if (choice < 0 || choice > 4){
       cout << "\nWrong choice, try again.";
     }
-  } while (choice < 0 || choice > 3);
+  } while (choice < 0 || choice > 4);
   return choice;
 }
 
@@ -135,14 +140,14 @@ void multArrays(const int arrQuantity[], const int arrPrice[], int arrTotal[], c
  * array. In addition the function sums up the value of all the elements and
  * print the total.
  * <BR>
- * @param arr The array containing the values
+ * @param arr The array containing the values.
  * @param size The size of the array.
  */
 void displayArray(const int arr[], int size){
   assert(size <= 10);
   int sum = 0;
 
-  for (int i = 0; i < size; ++i){
+  for (int i = 0; i < size; i++){
     cout << "\nValue at " << i+1 << ": " << arr[i];
     sum += arr[i];
   }
@@ -150,10 +155,22 @@ void displayArray(const int arr[], int size){
   cout << "\nThe total is: " << sum;
 }
 
-// Sums the odd numbers in the array and returns the result
+/**
+ * <code>sumOddArray</code> Prints the total of all odd numbers in the total array
+ * <BR>
+ * @param arr The array containing the values.
+ * @param size The size of the array.
+ * @return returns the sum of all the odd numbers in total
+ */
 int sumOddArray(const int arr[], const int size){
-//@TODO: You will need to complete this. Including making the appropriate comment header
-  return 0;
+  assert(size <= 10);
+  int sum = 0;
+
+  for (int i = 0; i < size; i++){
+    if (arr[i] % 2 != 0)
+      sum += arr[i];
+  }
+  return sum;
 }
 
 // If all the values in the array are positive return true
